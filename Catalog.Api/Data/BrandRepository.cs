@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,6 +16,7 @@ namespace Catalog.Api.Data
 
         public async Task AddBrandAsync(Brand brand)
         {
+            brand.Id = Guid.NewGuid();
             await _context.Brands.InsertOneAsync(brand);
         }
 

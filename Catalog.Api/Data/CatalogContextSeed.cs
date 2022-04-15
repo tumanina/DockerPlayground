@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,7 +22,7 @@ namespace Catalog.Api.Data
             {
                 new Brand()
                 {
-                    Id = "602d2149e773f2a3990b47f5",
+                    Id = Guid.NewGuid(),
                     Name = "test brand 1"
                 }
             };

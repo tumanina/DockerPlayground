@@ -2,14 +2,17 @@
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 
-namespace Catalog.Api.Data
+namespace Users.Data
 {
-    public class Brand
+    public class User
     {
         [BsonId]
         public Guid Id { get; set; }
 
         [BsonElement("name")]
         public string Name { get; set; }
+
+        [BsonElement("email")]
+        public string Email { get; set; }
     }
 }
