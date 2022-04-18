@@ -25,6 +25,16 @@ clean prevously created containers:
 
 `docker-compose down`
 
+Expexted output:
+
+CLI:
+![image](https://user-images.githubusercontent.com/17797666/163849504-cfc9894a-dd8b-41aa-90be-71126442e18d.png)
+
+To see the list of containers in CLI: `docker ps`
+
+Docker desktop:
+![image](https://user-images.githubusercontent.com/17797666/163849332-e58c4256-889e-4f32-8d75-06ffbc13da3c.png)
+
 Links:
 
 CatalogApi: http://localhost:8091/swagger/index.html
@@ -39,9 +49,9 @@ MongoDb: http://localhost:27017/
 
 If rabbitmq and mondodb don't install locally then execute:
 
-docker run --rm -it -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+`docker run --rm -it -p 15672:15672 -p 5672:5672 rabbitmq:3-management`
 
-docker run -p 27017:27017 mongo
+`docker run -p 27017:27017 mongo`
 
 After that run needed projects via Project ot Docker profiles:
 ![image](https://user-images.githubusercontent.com/17797666/163598559-127dceef-28c0-400b-9bf9-f848c676ddae.png)
@@ -69,11 +79,13 @@ https://docs.docker.com/engine/reference/commandline/build/
 
 CLI:
 
-`docker run -p 8091:80 -e ASPNETCORE_ENVIRONMENT='Development' catalog-api`
+`docker run -p {port if applicable} {name}`
 
-`docker run -p 8092:80 -e ASPNETCORE_ENVIRONMENT='Development' users-api`
+`docker run -p 8091:80 catalog-api`
 
-`docker run -e ASPNETCORE_ENVIRONMENT='Development' users-worker`
+`docker run -p 8092:80 users-api`
+
+`docker run users-worker`
 
 https://docs.docker.com/engine/reference/commandline/run/
 
