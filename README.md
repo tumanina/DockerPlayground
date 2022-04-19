@@ -99,3 +99,15 @@ Services should be accessable via links:
 CatalogApi: http://localhost:8091/swagger/index.html
 
 UsersApi: http://localhost:8092/swagger/index.html
+
+More information:
+
+https://docs.docker.com/samples/dotnetcore/
+
+https://docs.microsoft.com/en-us/dotnet/core/docker/introduction
+
+https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/building-net-docker-images?view=aspnetcore-6.0
+
+https://docs.microsoft.com/en-us/visualstudio/containers/overview?view=vs-2022
+
+https://docs.microsoft.com/en-us/visualstudio/containers/container-tools?view=vs-2022
