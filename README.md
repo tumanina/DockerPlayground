@@ -75,6 +75,24 @@ If rabbitmq and mondodb don't install locally then execute:
 
 https://docs.docker.com/engine/reference/commandline/build/
 
+Also images can be stored in DockerHub
+
+To push images:
+
+```
+docker login
+docker build -t {account_name}/{image_name} -f {path} .
+docker push {account_name}/{image_name}
+```
+
+![image](https://user-images.githubusercontent.com/17797666/164201582-27e8bf26-1637-4bf3-92ef-b7e7525bcaa3.png)
+
+Images can be pulled via Docker desktop or CLI
+
+`docker pull {account_name}/{image_name}`
+
+![image](https://user-images.githubusercontent.com/17797666/164201947-f2fd77f2-e063-437b-a7c8-cb99725c24c2.png)
+
 <b>Run</b> images:
 
 CLI:
