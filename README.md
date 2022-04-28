@@ -65,13 +65,13 @@ If rabbitmq and mondodb don't install locally then execute:
 
 `docker run -p 27017:27017 mongo`
 
-<b>Build</b> image of needed service(s) `docker build -t {name} -f {path} .`
+<b>Build</b> image of needed service(s) `docker build -t {name} -f {path}`
 
-`docker build -t catalog-api -f Catalog.Api/Dockerfile .`
+`docker build -t catalog-api -f Catalog.Api/Dockerfile`
 
-`docker build -t users-api -f Users.Api/Dockerfile .`
+`docker build -t users-api -f Users.Api/Dockerfile`
 
-`docker build -t users-worker -f Users.Worker/Dockerfile .`
+`docker build -t users-worker -f Users.Worker/Dockerfile`
 
 https://docs.docker.com/engine/reference/commandline/build/
 
@@ -81,7 +81,7 @@ To push images:
 
 ```
 docker login
-docker build -t {account_name}/{image_name} -f {path} .
+docker build -t {account_name}/{image_name} -f {path}
 docker push {account_name}/{image_name}
 ```
 
