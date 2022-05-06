@@ -49,6 +49,10 @@ MongoDb: http://localhost:27017/
 
 If rabbitmq and mondodb don't install locally then execute:
 
+`docker pull rabbitmq:3-management`
+
+`docker pull mongo`
+
 `docker run --rm -it -p 15672:15672 -p 5672:5672 rabbitmq:3-management`
 
 `docker run -p 27017:27017 mongo`
