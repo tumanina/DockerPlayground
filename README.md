@@ -45,6 +45,12 @@ Rabbitmq server: http://localhost:15672/
 
 MongoDb: http://localhost:27017/
 
+Run tests:
+`docker-compose up integration-tests`
+
+![image](https://user-images.githubusercontent.com/17797666/168889119-d2108ecb-3cc0-434b-bb0d-d2beae5b6c30.png)
+
+
 ### 2. Visual studio 
 
 If rabbitmq and mondodb don't install locally then execute:
