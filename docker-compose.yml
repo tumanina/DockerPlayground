@@ -1,15 +1,6 @@
 version: '3.8'
 
 services:
-  playgrounddb:
-    image: mongo
-    container_name: playgrounddb
-    restart: always
-    ports:
-        - "27017:27017"
-    volumes:
-        - mongo_data:/data/db 
-
   catalog.api:
     build:
       context: .
@@ -34,6 +25,18 @@ services:
     ports:
       - "8092:80"
 
+  orders.api:
+    build:
+      context: .
+      dockerfile: Orders.Api/Dockerfile
+    container_name: orders.api
+    environment:
+      - ConnectionStrings__DefaultConnection=Data Source=mssqldb; Initial Catalog=orders; Persist Security Info=True;User ID=SA;Password=Qwerty123456!@#
+    depends_on:
+      - mssqldb
+    ports:
+      - "8093:80"
+
   users.worker:
     build:
       context: .
@@ -50,6 +53,43 @@ services:
     ports:
     - "5672:5672"
     - "15672:15672"
+
+  playgrounddb:
+    image: mongo
+    container_name: playgrounddb
+    restart: always
+    ports:
+        - "27017:27017"
+    volumes:
+        - mongo_data:/data/db 
+
+  mssqldb:
+    container_name: mssqldb
+    ports:
+      - "1433:1433"
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    environment:
+        SA_PASSWORD: "Qwerty123456!@#"
+        ACCEPT_EULA: "Y"
+
+  integration-tests:
+    container_name: integration-tests
+    image: mcr.microsoft.com/dotnet/sdk:5.0
+    environment:
+      - OrdersUrl=http://orders.api/api
+    volumes:
+      - .:/src
+      - ../test:/test
+    working_dir: /src
+    command:
+      [
+        "dotnet",
+        "test",
+        "Tests/Orders.Tests/Orders.Tests.csproj"
+      ]
+    depends_on:
+      - orders.api
+      - mssqldb
 
 volumes:
   mongo_data:
