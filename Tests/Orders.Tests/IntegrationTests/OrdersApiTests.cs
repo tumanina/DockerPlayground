@@ -16,7 +16,7 @@ namespace Orders.Tests.IntegrationTests
 
         public OrdersApiTests()
         {
-            _url = Environment.GetEnvironmentVariable("OrdersUrl") ?? "http://localhost:8093/api";
+            _url = Environment.GetEnvironmentVariable("OrdersApiUrl") ?? "http://localhost:8093/api";
         }
 
         [TestMethod]

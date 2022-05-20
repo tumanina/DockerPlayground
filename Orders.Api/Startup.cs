@@ -5,7 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Orders.Api.Clients;
 using Orders.Api.Data;
+using Users.Data.Configuration;
 
 namespace Orders.Api
 {
@@ -24,7 +26,10 @@ namespace Orders.Api
             services.AddDbContext<OrdersContext>(options => options
                     .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.Configure<CatalogConfiguration>(Configuration.GetSection(nameof(CatalogConfiguration)));
+
             services.AddScoped<IOrdersRepository, OrdersRepository>();
+            services.AddScoped<ICatalogClient, CatalogClient>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

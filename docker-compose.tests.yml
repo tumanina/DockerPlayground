@@ -13,49 +13,18 @@ services:
     ports:
       - "8091:80"
 
-  users.api:
-    build:
-      context: .
-      dockerfile: Users.Api/Dockerfile
-    container_name: users.api
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    depends_on:
-      - rabbitmq
-    ports:
-      - "8092:80"
-
   orders.api:
     build:
       context: .
       dockerfile: Orders.Api/Dockerfile
     container_name: orders.api
     environment:
-      - ConnectionStrings__DefaultConnection=Data Source=mssqldb; Initial Catalog=orders; Persist Security Info=True;User ID=SA;Password=Qwerty123456!@#
-      - CatalogConfiguration__Url=http://catalog.api/api
+      - ConnectionStrings__DefaultConnection=Data Source=mssqldb; Initial Catalog=orders; Persist Security Info=True;User ID=sa;Password=Qwerty123456!@#
+      - CatalogApi__Url=http://catalog.api/api
     depends_on:
       - mssqldb
-      - catalog.api
     ports:
       - "8093:80"
-
-  users.worker:
-    build:
-      context: .
-      dockerfile: Users.Worker/Dockerfile
-    restart: always
-    depends_on:
-      - rabbitmq
-
-  rabbitmq:
-    image: rabbitmq:3-management
-    restart: always
-    hostname: "rabbitmq"
-    labels:
-      NAME: "rabbitmq"
-    ports:
-    - "5672:5672"
-    - "15672:15672"
 
   playgrounddb:
     image: mongo
@@ -74,5 +43,25 @@ services:
     environment:
         SA_PASSWORD: "Qwerty123456!@#"
         ACCEPT_EULA: "Y"
+
+  integration-tests:
+    container_name: integration-tests
+    image: mcr.microsoft.com/dotnet/sdk:5.0
+    environment:
+      - OrdersApiUrl=http://orders.api/api
+    volumes:
+      - .:/src
+      - ../test:/test
+    working_dir: /src
+    command:
+      [
+        "dotnet",
+        "test",
+        "Tests/Orders.Tests/Orders.Tests.csproj"
+      ]
+    depends_on:
+      - orders.api
+      - mssqldb
+
 volumes:
   mongo_data:
