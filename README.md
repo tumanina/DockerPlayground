@@ -34,7 +34,7 @@ CLI:
 To see the list of containers in CLI: `docker ps`
 
 Docker desktop:
-![image](https://user-images.githubusercontent.com/17797666/163849332-e58c4256-889e-4f32-8d75-06ffbc13da3c.png)
+![image](https://user-images.githubusercontent.com/17797666/169589340-ac2bf802-9f36-4e3d-a0fc-f490be3f6ae3.png)
 
 Links:
 
@@ -50,43 +50,35 @@ MongoDb: http://localhost:27017/
 
 Mssql: `Data Source=localhost,1433; Initial Catalog=orders; Persist Security Info=True;User ID=SA;Password=Qwerty123456!@#`
 
-Run tests:
-`docker-compose up integration-tests`
+Run integration tests:
+`docker-compose -f docker-compose.tests.yml up integration-tests`
 
-![image](https://user-images.githubusercontent.com/17797666/168889119-d2108ecb-3cc0-434b-bb0d-d2beae5b6c30.png)
+![image](https://user-images.githubusercontent.com/17797666/169589060-772942f9-9623-4973-8f62-a2a1bbdd3f5d.png)
 
 
 ### 2. Visual studio 
 
-If rabbitmq and mondodb don't install locally then execute:
+Run needed projects via Project ot Docker profiles:
+![image](https://user-images.githubusercontent.com/17797666/163598559-127dceef-28c0-400b-9bf9-f848c676ddae.png)
+
+
+### 3. Docker CLI/Desktop
+
+Pull rabbitmq and mondodb images if needed:
 
 `docker pull rabbitmq:3-management`
 
 `docker pull mongo`
 
-`docker run --rm -it -p 15672:15672 -p 5672:5672 rabbitmq:3-management`
+<b>Build</b> image of needed service(s) `docker build -t {name} -f {path} .`
 
-`docker run -p 27017:27017 mongo`
+`docker build -t catalog-api -f Catalog.Api/Dockerfile .`
 
-After that run needed projects via Project ot Docker profiles:
-![image](https://user-images.githubusercontent.com/17797666/163598559-127dceef-28c0-400b-9bf9-f848c676ddae.png)
+`docker build -t users-api -f Users.Api/Dockerfile .`
 
+`docker build -t orders-api -f Orders.Api/Dockerfile .`
 
-### 3. Docker CLI/Desktop
- 
-If rabbitmq and mondodb don't install locally then execute:
-
-`docker run --rm -it -p 15672:15672 -p 5672:5672 rabbitmq:3-management`
-
-`docker run -p 27017:27017 mongo`
-
-<b>Build</b> image of needed service(s) `docker build -t {name} -f {path}` .
-
-`docker build -t catalog-api -f Catalog.Api/Dockerfile` .
-
-`docker build -t users-api -f Users.Api/Dockerfile` .
-
-`docker build -t users-worker -f Users.Worker/Dockerfile` .
+`docker build -t users-worker -f Users.Worker/Dockerfile .`
 
 https://docs.docker.com/engine/reference/commandline/build/
 
@@ -112,26 +104,43 @@ Images can be pulled via Docker desktop or CLI
 
 CLI:
 
-`docker run -p {port if applicable} {name}`
+Create new network if needed:
 
-`docker run -p 8091:80 catalog-api`
+`docker network create playground-network`
 
-`docker run -p 8092:80 users-api`
+Run image `docker run -p {port if applicable} --name {container_name if applicaple} --network {network_name} {image_name}`
+
+If rabbitmq and mondodb don't install locally then:
+
+`docker run --rm -it -p 15672:15672 -p 5672:5672 --network playground-network rabbitmq:3-management`
+
+`docker run -p 27017:27017 --network playground-network mongo`
+
+Playground services:
+
+`docker run -p 8091:80 --network playground-network catalog-api`
+
+`docker run -p 8092:80 --network playground-network users-api`
+
+`docker run -p 8093:80 --network playground-network orders-api`
 
 `docker run users-worker`
 
 https://docs.docker.com/engine/reference/commandline/run/
 
 Docker desktop:
+
 ![image](https://user-images.githubusercontent.com/17797666/163601955-626febd1-5c76-4bbe-8394-45593d6e4208.png)
 
 ![image](https://user-images.githubusercontent.com/17797666/163603244-796e594e-def2-4f4e-9231-6414b6ada162.png)
 
-Services should be accessable via links:
+Services should be available via links:
 
 CatalogApi: http://localhost:8091/swagger/index.html
 
 UsersApi: http://localhost:8092/swagger/index.html
+
+OrdersApi: http://localhost:8093/swagger/index.html
 
 More information:
 
