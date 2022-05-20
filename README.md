@@ -110,7 +110,7 @@ Create new network if needed:
 
 Run image `docker run -p {port if applicable} --name {container_name if applicaple} --network {network_name} {image_name}`
 
-If rabbitmq and mondodb don't install locally then:
+If rabbitmq and mondodb are not installed locally then:
 
 `docker run --rm -it -p 15672:15672 -p 5672:5672 --network playground-network rabbitmq:3-management`
 
