@@ -2,7 +2,7 @@
 
 ## Architecture
 
-![image](https://user-images.githubusercontent.com/17797666/163599780-d6f75491-d68d-4fa5-9fdd-fe0619f9ea71.png)
+![image](https://user-images.githubusercontent.com/17797666/168889831-5bd0fddc-f676-49ea-9202-2b259e322a39.png)
 
 
 ## How to start:
@@ -28,7 +28,8 @@ clean prevously created containers:
 Expexted output:
 
 CLI:
-![image](https://user-images.githubusercontent.com/17797666/163849504-cfc9894a-dd8b-41aa-90be-71126442e18d.png)
+
+![image](https://user-images.githubusercontent.com/17797666/168890296-0c94c2c9-099e-44b4-9b8f-76d13602f845.png)
 
 To see the list of containers in CLI: `docker ps`
 
@@ -41,9 +42,19 @@ CatalogApi: http://localhost:8091/swagger/index.html
 
 UsersApi: http://localhost:8092/swagger/index.html
 
+OrdersApi: http://localhost:8093/swagger/index.html
+
 Rabbitmq server: http://localhost:15672/
 
 MongoDb: http://localhost:27017/
+
+Mssql: `Data Source=localhost,1433; Initial Catalog=orders; Persist Security Info=True;User ID=SA;Password=Qwerty123456!@#`
+
+Run tests:
+`docker-compose up integration-tests`
+
+![image](https://user-images.githubusercontent.com/17797666/168889119-d2108ecb-3cc0-434b-bb0d-d2beae5b6c30.png)
+
 
 ### 2. Visual studio 
 
