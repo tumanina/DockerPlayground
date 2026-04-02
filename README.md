@@ -151,6 +151,24 @@ https://docs.docker.com/samples/dotnetcore/
 
 https://docs.microsoft.com/en-us/dotnet/core/docker/introduction
 
+## 4. Kubernetes bridge from docker-compose
+
+<img width="1891" height="959" alt="image" src="https://github.com/user-attachments/assets/1972b47b-4ff6-452a-8d6e-7e767f003ecf" />
+
+
+<img width="1903" height="1007" alt="image" src="https://github.com/user-attachments/assets/23e31ebc-9c6e-4d55-84e9-1858ba72d95a" />
+
+
+<img width="1917" height="1007" alt="image" src="https://github.com/user-attachments/assets/9041d74a-ed90-4eba-990c-75704d8e9e99" />
+
+
+<img width="1899" height="981" alt="image" src="https://github.com/user-attachments/assets/c02cce95-ae5f-4428-bc39-df24eb5276a1" />
+
+
+<img width="1891" height="997" alt="image" src="https://github.com/user-attachments/assets/df36827b-66eb-467a-89c2-d04b1fd25596" />
+
+
+
 https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/building-net-docker-images?view=aspnetcore-6.0
 
 https://docs.microsoft.com/en-us/visualstudio/containers/overview?view=vs-2022
