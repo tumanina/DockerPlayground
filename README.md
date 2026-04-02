@@ -36,6 +36,9 @@ To see the list of containers in CLI: `docker ps`
 Docker desktop:
 ![image](https://user-images.githubusercontent.com/17797666/169589340-ac2bf802-9f36-4e3d-a0fc-f490be3f6ae3.png)
 
+<img width="1867" height="1013" alt="image" src="https://github.com/user-attachments/assets/d14adaec-416e-4c5e-9c15-6d7378140e68" />
+
+
 Links:
 
 CatalogApi: http://localhost:8091/swagger/index.html
